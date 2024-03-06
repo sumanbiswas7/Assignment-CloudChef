@@ -36,11 +36,7 @@ export default function App() {
       return tree;
    }
 
-   return (
-      <div style={{ width: "100vw", height: "100vh" }} className="tree">
-         {renderTree(data)}
-      </div>
-   );
+   return <div className="tree">{renderTree(data)}</div>;
 }
 
 const renderTree = (treeData: NestedNode[]) => {
@@ -48,7 +44,7 @@ const renderTree = (treeData: NestedNode[]) => {
       <ul>
          {treeData.map((item) => (
             <li key={item.name}>
-               <div>{item.name}</div>
+               <div className={"item"}>{item.name}</div>
                {item.children && item.children.length ? renderTree(item.children) : ""}
             </li>
          ))}
