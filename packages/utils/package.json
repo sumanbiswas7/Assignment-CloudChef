@@ -1,0 +1,17 @@
+{
+   "name": "utils",
+   "version": "0.0.0",
+   "main": "dist/index.js",
+   "typings": "dist/types/index.d.ts",
+   "license": "MIT",
+   "description": "util functions for frontend and backend",
+   "scripts": {
+      "build": "tsc",
+      "build:pkg": "tsc",
+      "clean:unix": "rm -rf node_modules && rm -rf dist",
+      "clean:win": "if exist node_modules rmdir /s /q node_modules && if exist dist rmdir /s /q dist"
+   },
+   "devDependencies": {
+      "typescript": "^4.5.2"
+   }
+}

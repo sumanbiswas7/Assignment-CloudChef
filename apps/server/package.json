@@ -1,0 +1,31 @@
+{
+   "name": "server",
+   "version": "0.0.0",
+   "description": "",
+   "scripts": {
+      "build": "tsc",
+      "dev": "nodemon src/devServer.ts",
+      "deploy": "serverless deploy",
+      "remove": "serverless remove",
+      "clean:unix": "rm -rf node_modules && rm -rf dist",
+      "clean:win": "if exist node_modules rmdir /s /q node_modules && if exist dist rmdir /s /q dist"
+   },
+   "keywords": [],
+   "license": "ISC",
+   "dependencies": {
+      "body-parser": "^1.20.2",
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "serverless-http": "^3.1.1",
+      "utils": "*",
+      "types": "*"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.15",
+      "dotenv": "^16.0.3",
+      "nodemon": "^2.0.20",
+      "serverless-plugin-monorepo": "^0.11.0",
+      "serverless-plugin-typescript": "^2.1.4",
+      "ts-node": "^10.9.1"
+   }
+}
