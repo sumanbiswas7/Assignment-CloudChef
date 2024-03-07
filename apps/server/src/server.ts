@@ -3,8 +3,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import { AUTHOR } from "utils";
-import animalRoutes from "./routes/animal.route";
+import nodeRoutes from "./routes/node.route";
 
 export const app = express();
 
@@ -13,11 +12,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.use("/animal", animalRoutes);
+app.use("/node", nodeRoutes);
 
 app.get("/", (req: Request, res: Response) => {
    res.json({
-      AUTHOR,
       working: true,
       message: `Hello World`,
       secret: `SECRET: ${process.env.SECRET} 🤫`,
