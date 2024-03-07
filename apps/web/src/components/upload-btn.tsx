@@ -3,6 +3,8 @@ import classes from "./upload-btn.module.css";
 import { TreeDataAtom, UploadingAtom } from "../atoms/tree-atoms";
 import { isValidJson } from "../utils/valid-json";
 import { buildTree } from "../utils/build-tree";
+import axios from "axios";
+import { BASE_URL } from "../constants/base-url";
 
 export function UploadButton() {
    const [, setUpload] = useAtom(UploadingAtom);
@@ -14,7 +16,7 @@ export function UploadButton() {
          if (!file) return;
          const reader = new FileReader();
 
-         reader.onload = function (event) {
+         reader.onload = async function (event) {
             try {
                setUpload(true);
                const jsonData = JSON.parse(event.target?.result as string);
@@ -27,9 +29,15 @@ export function UploadButton() {
                }
 
                // upload it to DB
+               const res = await axios.post(`${BASE_URL}/node`, { nodes: jsonData });
+               if (res.status !== 200) {
+                  setUpload(false);
+                  return alert("Something went wrong");
+               }
+
+               // render the uploaded in fe
                const treeData = buildTree(jsonData);
                setTreeData(treeData);
-
                setUpload(false);
             } catch (error) {
                setUpload(false);

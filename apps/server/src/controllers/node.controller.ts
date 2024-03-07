@@ -34,6 +34,7 @@ export async function upload_node(req: Request, res: Response) {
       response.status = HTTP_STATUS.OK;
       return res.status(response.status).json(response);
    } catch (error) {
+      console.log(error);
       response.isError = true;
       response.status = HTTP_STATUS.SERVICE_UNAVAILABLE;
       response.message = "Something went wrong";

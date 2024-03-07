@@ -7,7 +7,6 @@ const nodeSchema = new mongoose.Schema({
    },
    parentName: {
       type: String,
-      required: true,
    },
 
    childrenNames: [String],
