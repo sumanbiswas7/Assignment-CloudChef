@@ -11,6 +11,7 @@
  */
 export function isValidJson(data: any[]) {
    try {
+      let parentFound = false;
       const nodesByName = new Map(); // name -> node conversion for quick access
       data.forEach((node) => {
          nodesByName.set(node.name, { ...node, children: [] });
@@ -18,6 +19,8 @@ export function isValidJson(data: any[]) {
 
       for (const node of data) {
          if (!node.name || !node.childrenNames) return false;
+         if (parentFound === true && node.parentName === null) return false;
+         if (node.parentName === null) parentFound = true;
          if (node.parentName && !nodesByName.has(node.parentName)) return false;
          if (!Array.isArray(node.childrenNames)) return false;
 
