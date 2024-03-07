@@ -28,17 +28,17 @@ export function UploadButton() {
                   return alert("Given JSON is not formatted correctly");
                }
 
-               // upload it to DB
+               // instantly render the uploaded in fe
+               const treeData = buildTree(jsonData);
+               setTreeData(treeData);
+               setUpload(false);
+
+               // then upload it to DB
                const res = await axios.post(`${BASE_URL}/node`, { nodes: jsonData });
                if (res.status !== 200) {
                   setUpload(false);
                   return alert("Something went wrong");
                }
-
-               // render the uploaded in fe
-               const treeData = buildTree(jsonData);
-               setTreeData(treeData);
-               setUpload(false);
             } catch (error) {
                setUpload(false);
                console.error("Error parsing JSON:", error);
