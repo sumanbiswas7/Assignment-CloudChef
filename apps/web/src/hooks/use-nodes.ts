@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../constants/base-url";
 import { buildTree } from "../utils/build-tree";
+import { getMsgFromAxiosErr } from "../utils/get-axios-err";
 
 export function useNodes() {
    const [data, setData] = useAtom(TreeDataAtom);
@@ -23,7 +24,8 @@ export function useNodes() {
          setData(modifiedData);
          setLoading(false);
       } catch (error) {
-         setError("Something went wrong");
+         const msg = getMsgFromAxiosErr(error);
+         setError(msg);
       }
    }
 
