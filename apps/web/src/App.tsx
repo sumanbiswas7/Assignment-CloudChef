@@ -1,15 +1,14 @@
 import classes from "./App.module.css";
 import { UploadButton } from "./components/upload-btn";
-import { useAtom } from "jotai";
-import { TreeDataAtom, UploadingAtom } from "./atoms/tree-atoms";
 import { RenderTree } from "./components/render-tree";
 import { NoDataIllustration } from "./components/no-data";
+import { useNodes } from "./hooks/use-nodes";
 
 export default function App() {
-   const [data] = useAtom(TreeDataAtom);
-   const [uploading] = useAtom(UploadingAtom);
+   const { data, error, loading } = useNodes();
 
-   if (uploading) return <a>Uploading...</a>;
+   if (error) return <p>{error}</p>;
+   if (loading) return <a>Loading...</a>;
 
    return (
       <div>

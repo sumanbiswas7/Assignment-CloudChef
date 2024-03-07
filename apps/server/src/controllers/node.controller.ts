@@ -24,14 +24,31 @@ export async function upload_node(req: Request, res: Response) {
       }
 
       await mongoose.connect(process.env.DATABASE_URL);
+      await Node.deleteMany(); // clear node colletion before uploading again
 
       for (const node of nodes) {
          const newNode = new Node(node);
          await newNode.save();
       }
 
-      await mongoose.disconnect();
       response.status = HTTP_STATUS.OK;
+      return res.status(response.status).json(response);
+   } catch (error) {
+      console.log(error);
+      response.isError = true;
+      response.status = HTTP_STATUS.SERVICE_UNAVAILABLE;
+      response.message = "Something went wrong";
+      res.status(response.status).json(response);
+   }
+}
+
+export async function get_nodes(_: Request, res: Response) {
+   const response = new HttpResponse({});
+   try {
+      await mongoose.connect(process.env.DATABASE_URL);
+      const nodes = await Node.find();
+      response.status = HTTP_STATUS.OK;
+      response.data = { nodes };
       return res.status(response.status).json(response);
    } catch (error) {
       console.log(error);
