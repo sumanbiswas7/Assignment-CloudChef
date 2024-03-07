@@ -10,9 +10,7 @@ export function renderTree(data: NestedNode[]) {
       <ul>
          {data.map((item) => (
             <li key={item.name}>
-               <div className={"item"} style={{}}>
-                  {item.name}
-               </div>
+               <div className={"item"}>{item.name}</div>
                {item.children && item.children.length ? renderTree(item.children) : ""}
             </li>
          ))}

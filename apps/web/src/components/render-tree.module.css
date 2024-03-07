@@ -25,14 +25,15 @@
    position: absolute;
    top: 0;
    right: 50%;
-   border-top: 1px solid #ccc;
+   border-top: 2px solid #787878;
    width: 50%;
    height: 20px;
 }
+
 .tree li::after {
    right: auto;
    left: 50%;
-   border-left: 1px solid #ccc;
+   border-left: 2px solid #787878;
 }
 
 .tree li:only-child::after,
@@ -49,7 +50,7 @@
    border: 0 none;
 }
 .tree li:last-child::before {
-   border-right: 1px solid #ccc;
+   border-right: 2px solid #787878;
    border-radius: 0 5px 0 0;
 }
 .tree li:first-child::after {
@@ -60,14 +61,16 @@
    position: absolute;
    top: 0;
    left: 50%;
-   border-left: 1px solid #ccc;
+   border-left: 2px solid #787878;
    width: 0;
    height: 20px;
 }
 .tree li div {
-   border: 1px solid #ccc;
+   border: 1px solid rgba(0, 0, 0, 0.15);
+   box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.05);
    padding: 2vw 7vw;
    text-decoration: none;
+   background-color: #c9f4f8;
    color: #666;
    font-size: 1.1rem;
 
@@ -78,15 +81,15 @@
 }
 .tree li div:hover,
 .tree li div:hover + ul li div {
-   background: #c8e4f8;
+   background: #c8f8cc;
    color: #000;
-   border: 1px solid #94a0b4;
+   border: 1px solid #94b496;
 }
 .tree li div:hover + ul li::after,
 .tree li div:hover + ul li::before,
 .tree li div:hover + ul::before,
 .tree li div:hover + ul ul::before {
-   border-color: #94a0b4;
+   border-color: #000000;
 }
 
 @media only screen and (max-width: 670px) {

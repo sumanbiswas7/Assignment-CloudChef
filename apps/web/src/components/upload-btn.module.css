@@ -2,12 +2,19 @@
 }
 
 .upload_btn {
-   font-size: 1.25rem;
-   padding: 0.35rem 1rem;
-   border: none;
-   outline: none;
-   background-color: rgba(0, 0, 0, 0.15);
-   border-radius: 0.2rem;
+   cursor: pointer;
+   border: 1px solid rgba(0, 0, 0, 0.15);
+   background-color: rgba(0, 0, 0, 0.1);
+   box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.05);
+   padding: 0.5rem 1rem;
+   text-decoration: none;
+   color: #1d1d1d;
+   font-size: 1.1rem;
+
+   display: inline-block;
+
+   border-radius: 5px;
+   transition: all 0.5s;
 }
 
 .input {
