@@ -3,6 +3,7 @@ import { UploadButton } from "./components/upload-btn";
 import { RenderTree } from "./components/render-tree";
 import { NoDataIllustration } from "./components/no-data";
 import { useNodes } from "./hooks/use-nodes";
+import { GithubButton } from "./components/github-button";
 
 export default function App() {
    const { data, error, loading } = useNodes();
@@ -14,7 +15,10 @@ export default function App() {
       <div>
          <nav className={classes.navbar}>
             <h2>Json Tree Viewer</h2>
-            <UploadButton />
+            <div className={classes.flex_row}>
+               <GithubButton />
+               <UploadButton />
+            </div>
          </nav>
 
          {data.length ? <RenderTree data={data} /> : <NoDataIllustration />}
