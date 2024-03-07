@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import classes from "./upload-btn.module.css";
 import { TreeDataAtom, UploadingAtom } from "../atoms/tree-atoms";
-import { isValidJson } from "../utils/check-json";
+import { isValidJson } from "../utils/valid-json";
 import { buildTree } from "../utils/build-tree";
 
 export function UploadButton() {
@@ -30,9 +30,7 @@ export function UploadButton() {
                const treeData = buildTree(jsonData);
                setTreeData(treeData);
 
-               console.log("Success", jsonData);
                setUpload(false);
-               // Check if the json file is supported
             } catch (error) {
                setUpload(false);
                console.error("Error parsing JSON:", error);
