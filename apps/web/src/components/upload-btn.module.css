@@ -1,0 +1,15 @@
+.container {
+}
+
+.upload_btn {
+   font-size: 1.25rem;
+   padding: 0.35rem 1rem;
+   border: none;
+   outline: none;
+   background-color: rgba(0, 0, 0, 0.15);
+   border-radius: 0.2rem;
+}
+
+.input {
+   display: none;
+}

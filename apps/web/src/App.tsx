@@ -1,53 +1,24 @@
-import { useEffect, useState } from "react";
-import DUMMY_DATA from "./data/dummy-data.json";
-import { NestedNode, Node } from "types";
-import "./App.css";
+import classes from "./App.module.css";
+import { UploadButton } from "./components/upload-btn";
+import { useAtom } from "jotai";
+import { TreeDataAtom, UploadingAtom } from "./atoms/tree-atoms";
+import { RenderTree } from "./components/render-tree";
+import { NoDataIllustration } from "./components/no-data";
 
 export default function App() {
-   const [data, setData] = useState<NestedNode[]>([]);
+   const [data] = useAtom(TreeDataAtom);
+   const [uploading] = useAtom(UploadingAtom);
 
-   useEffect(() => {
-      const modifiedData = buildTree(DUMMY_DATA);
-      console.log(modifiedData);
-      setData(modifiedData);
-   }, []);
+   if (uploading) return <a>Uploading...</a>;
 
-   function buildTree(data: Node[]) {
-      const nodesByName = new Map(); // name -> node conversion for quick access
-      data.forEach((node) => {
-         nodesByName.set(node.name, { ...node, children: [] });
-      });
-
-      let tree: NestedNode[] = [];
-      data.forEach((node) => {
-         if (node.parentName) {
-            // If the node has a parent, find the parent and add this node to its children
-            const parent = nodesByName.get(node.parentName);
-            if (parent) {
-               // Append current node to its parent's children array
-               parent.children.push(nodesByName.get(node.name));
-            }
-         } else {
-            // If no parent, it's a root node
-            tree.push(nodesByName.get(node.name));
-         }
-      });
-
-      return tree;
-   }
-
-   return <div className="tree">{renderTree(data)}</div>;
-}
-
-const renderTree = (treeData: NestedNode[]) => {
    return (
-      <ul>
-         {treeData.map((item) => (
-            <li key={item.name}>
-               <div className={"item"}>{item.name}</div>
-               {item.children && item.children.length ? renderTree(item.children) : ""}
-            </li>
-         ))}
-      </ul>
+      <div>
+         <nav className={classes.navbar}>
+            <h2>Json Tree Viewer</h2>
+            <UploadButton />
+         </nav>
+
+         {data.length ? <RenderTree data={data} /> : <NoDataIllustration />}
+      </div>
    );
-};
+}
